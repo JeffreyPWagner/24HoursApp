@@ -8,40 +8,42 @@
 
     <Chronometer
         android:id="@+id/chronometer_main"
-        android:layout_width="268dp"
-        android:layout_height="94dp"
+        android:layout_width="291dp"
+        android:layout_height="114dp"
         android:gravity="center"
-        android:textSize="60sp"
+        android:textSize="70sp"
         android:typeface="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.081" />
 
     <Button
         android:id="@+id/startButton"
-        android:layout_width="100dp"
-        android:layout_height="59dp"
+        android:layout_width="142dp"
+        android:layout_height="84dp"
         android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:text="@string/start"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/chronometer_main"
-        app:layout_constraintTop_toBottomOf="@+id/chronometer_main"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintEnd_toStartOf="@+id/setTimeButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/setTimeButton" />
 
     <Button
         android:id="@+id/setTimeButton"
-        android:layout_width="100dp"
-        android:layout_height="59dp"
+        android:layout_width="142dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="28dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:text="@string/setTime"
-        app:layout_constraintEnd_toEndOf="@+id/chronometer_main"
-        app:layout_constraintTop_toTopOf="@+id/startButton" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
     <Button
         android:id="@+id/goal1"
@@ -94,15 +96,19 @@
         style="@android:style/Widget.ProgressBar.Horizontal"
         android:layout_width="223dp"
         android:layout_height="56dp"
+        android:layout_marginTop="8dp"
         android:indeterminate="false"
+        android:max="@string/progress_1_max"
+        android:progress="@string/progress_1_value"
         android:progressBackgroundTint="@android:color/transparent"
+        android:progressTint="@android:color/holo_blue_dark"
         android:scaleY=".8"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.914"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/setTimeButton"
-        app:layout_constraintVertical_bias="0.042" />
+        app:layout_constraintTop_toBottomOf="@+id/chronometer_main"
+        app:layout_constraintVertical_bias="0.079" />
 
     <ProgressBar
         android:id="@+id/progressBar2"
@@ -113,6 +119,9 @@
         android:indeterminate="false"
         android:progressBackgroundTint="@android:color/transparent"
         android:scaleY=".8"
+        android:max="@string/progress_2_max"
+        android:progress="@string/progress_2_value"
+        android:progressTint="@android:color/holo_blue_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.914"
@@ -129,6 +138,9 @@
         android:indeterminate="false"
         android:progressBackgroundTint="@android:color/transparent"
         android:scaleY=".8"
+        android:max="@string/progress_3_max"
+        android:progress="@string/progress_3_value"
+        android:progressTint="@android:color/holo_blue_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.914"
@@ -145,6 +157,9 @@
         android:indeterminate="false"
         android:progressBackgroundTint="@android:color/transparent"
         android:scaleY=".8"
+        android:max="@string/progress_4_max"
+        android:progress="@string/progress_4_value"
+        android:progressTint="@android:color/holo_blue_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.914"
