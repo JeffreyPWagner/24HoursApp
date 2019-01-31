@@ -2,11 +2,14 @@
     <string name="app_name">24 Hours</string>
     <string name="stop">Stop</string>
     <string name="start">Start</string>
-    <string name="reset">Reset</string>
     <string name="setTime">Set Time</string>
-    <string name="goal1name">Goal 1</string>
-    <string name="goal2name">Goal 2</string>
-    <string name="goal3name">Goal 3</string>
-    <string name="goal4name">Goal 4</string>
-    <string name="goal1time">/ 6:00:00</string>
+    <string name="goal_1_name">Goal 1</string>
+    <string name="goal_2_name">Goal 2</string>
+    <string name="goal_3_name">Goal 3</string>
+    <string name="goal_4_name">Goal 4</string>
+    <string name="goal_1_time">/ 6:00:00</string>
+    <string name="goal_2_time">/ 6:00:00</string>
+    <string name="goal_3_time">/ 6:00:00</string>
+    <string name="goal_4_time">/ 6:00:00</string>
+    <string name="progress_border">/ Progress border</string>
 </resources>

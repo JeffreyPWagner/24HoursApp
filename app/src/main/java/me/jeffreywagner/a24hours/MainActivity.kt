@@ -3,6 +3,7 @@ package me.jeffreywagner.a24hours
 import android.os.Bundle
 import android.os.SystemClock
 import android.app.Activity
+import android.content.pm.ActivityInfo
 import android.view.View
 import android.widget.Button
 import android.widget.Chronometer
@@ -16,7 +17,8 @@ class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        chronometer = findViewById(R.id.chronometer)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        chronometer = findViewById(R.id.chronometer_main)
         val startButton = findViewById<Button>(R.id.startButton)
 
         startButton.setOnClickListener {v ->

@@ -7,12 +7,12 @@
     android:layout_height="match_parent">
 
     <Chronometer
-        android:id="@+id/chronometer"
+        android:id="@+id/chronometer_main"
         android:layout_width="268dp"
         android:layout_height="94dp"
         android:gravity="center"
         android:textSize="60sp"
-        android:typeface="serif"
+        android:typeface="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -29,30 +29,40 @@
         android:paddingRight="20dp"
         android:text="@string/start"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/chronometer"
-        app:layout_constraintTop_toBottomOf="@+id/chronometer"
+        app:layout_constraintStart_toStartOf="@+id/chronometer_main"
+        app:layout_constraintTop_toBottomOf="@+id/chronometer_main"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/goal1"
+        android:id="@+id/setTimeButton"
         android:layout_width="100dp"
         android:layout_height="59dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:text="@string/goal1name"
+        android:text="@string/setTime"
+        app:layout_constraintEnd_toEndOf="@+id/chronometer_main"
+        app:layout_constraintTop_toTopOf="@+id/startButton" />
+
+    <Button
+        android:id="@+id/goal1"
+        android:layout_width="100dp"
+        android:layout_height="57dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="@string/goal_1_name"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/progressBar"
+        app:layout_constraintEnd_toStartOf="@+id/progressBar1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/progressBar"
+        app:layout_constraintTop_toTopOf="@+id/progressBar1"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/goal2"
         android:layout_width="100dp"
-        android:layout_height="59dp"
+        android:layout_height="57dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:text="@string/goal2name"
+        android:text="@string/goal_2_name"
         app:layout_constraintEnd_toStartOf="@+id/progressBar2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/progressBar2" />
@@ -60,10 +70,10 @@
     <Button
         android:id="@+id/goal3"
         android:layout_width="100dp"
-        android:layout_height="59dp"
+        android:layout_height="57dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:text="@string/goal3name"
+        android:text="@string/goal_3_name"
         app:layout_constraintEnd_toStartOf="@+id/progressBar3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/progressBar3" />
@@ -71,26 +81,16 @@
     <Button
         android:id="@+id/goal4"
         android:layout_width="100dp"
-        android:layout_height="59dp"
+        android:layout_height="57dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:text="@string/goal4name"
+        android:text="@string/goal_4_name"
         app:layout_constraintEnd_toStartOf="@+id/progressBar4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/progressBar4" />
 
-    <Button
-        android:id="@+id/addTimeButton"
-        android:layout_width="100dp"
-        android:layout_height="59dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:text="@string/setTime"
-        app:layout_constraintEnd_toEndOf="@+id/chronometer"
-        app:layout_constraintTop_toTopOf="@+id/startButton" />
-
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/progressBar1"
         style="@android:style/Widget.ProgressBar.Horizontal"
         android:layout_width="223dp"
         android:layout_height="56dp"
@@ -101,38 +101,34 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.914"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addTimeButton"
+        app:layout_constraintTop_toBottomOf="@+id/setTimeButton"
         app:layout_constraintVertical_bias="0.042" />
-
-    <ImageView
-        android:layout_width="227dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="4dp"
-        android:src="@drawable/layer_list"
-        app:layout_constraintTop_toTopOf="@+id/goal1"
-        tools:layout_editor_absoluteX="172dp" />
 
     <ProgressBar
         android:id="@+id/progressBar2"
         style="@android:style/Widget.ProgressBar.Horizontal"
         android:layout_width="223dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="8dp"
         android:indeterminate="false"
+        android:progressBackgroundTint="@android:color/transparent"
+        android:scaleY=".8"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.914"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar"
+        app:layout_constraintTop_toBottomOf="@+id/progressBar1"
         app:layout_constraintVertical_bias="0.0" />
 
     <ProgressBar
         android:id="@+id/progressBar3"
         style="@android:style/Widget.ProgressBar.Horizontal"
         android:layout_width="223dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="8dp"
         android:indeterminate="false"
+        android:progressBackgroundTint="@android:color/transparent"
+        android:scaleY=".8"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.914"
@@ -144,9 +140,11 @@
         android:id="@+id/progressBar4"
         style="@android:style/Widget.ProgressBar.Horizontal"
         android:layout_width="223dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="8dp"
         android:indeterminate="false"
+        android:progressBackgroundTint="@android:color/transparent"
+        android:scaleY=".8"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.914"
@@ -155,24 +153,140 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Chronometer
+        android:id="@+id/chronometer1"
+        android:layout_width="56dp"
+        android:layout_height="18dp"
+        android:gravity="end"
+        android:textAppearance="@android:style/TextAppearance.Material.Small"
+        app:layout_constraintBottom_toBottomOf="@+id/progressBar1"
+        app:layout_constraintStart_toStartOf="@+id/progressBar1"
+        app:layout_constraintTop_toTopOf="@+id/progressBar1" />
+
+    <Chronometer
         android:id="@+id/chronometer2"
         android:layout_width="56dp"
         android:layout_height="18dp"
         android:gravity="end"
         android:textAppearance="@android:style/TextAppearance.Material.Small"
-        app:layout_constraintBottom_toBottomOf="@+id/progressBar"
-        app:layout_constraintStart_toStartOf="@+id/progressBar"
-        app:layout_constraintTop_toTopOf="@+id/progressBar" />
+        app:layout_constraintBottom_toBottomOf="@+id/progressBar2"
+        app:layout_constraintStart_toStartOf="@+id/progressBar2"
+        app:layout_constraintTop_toTopOf="@+id/progressBar2" />
+
+    <Chronometer
+        android:id="@+id/chronometer3"
+        android:layout_width="56dp"
+        android:layout_height="18dp"
+        android:gravity="end"
+        android:textAppearance="@android:style/TextAppearance.Material.Small"
+        app:layout_constraintBottom_toBottomOf="@+id/progressBar3"
+        app:layout_constraintStart_toStartOf="@+id/progressBar3"
+        app:layout_constraintTop_toTopOf="@+id/progressBar3" />
+
+    <Chronometer
+        android:id="@+id/chronometer4"
+        android:layout_width="56dp"
+        android:layout_height="18dp"
+        android:gravity="end"
+        android:textAppearance="@android:style/TextAppearance.Material.Small"
+        app:layout_constraintBottom_toBottomOf="@+id/progressBar4"
+        app:layout_constraintStart_toStartOf="@+id/progressBar4"
+        app:layout_constraintTop_toTopOf="@+id/progressBar4" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="3dp"
         android:fontFamily="sans-serif"
-        android:text="@string/goal1time"
+        android:text="@string/goal_1_time"
+        app:layout_constraintStart_toEndOf="@+id/chronometer1"
+        app:layout_constraintTop_toTopOf="@+id/chronometer1" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:fontFamily="sans-serif"
+        android:text="@string/goal_2_time"
         app:layout_constraintStart_toEndOf="@+id/chronometer2"
         app:layout_constraintTop_toTopOf="@+id/chronometer2" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:fontFamily="sans-serif"
+        android:text="@string/goal_3_time"
+        app:layout_constraintStart_toEndOf="@+id/chronometer3"
+        app:layout_constraintTop_toTopOf="@+id/chronometer3" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:fontFamily="sans-serif"
+        android:text="@string/goal_4_time"
+        app:layout_constraintStart_toEndOf="@+id/chronometer4"
+        app:layout_constraintTop_toTopOf="@+id/chronometer4" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="226dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="6dp"
+        android:contentDescription="@string/progress_border"
+        android:src="@drawable/layer_list"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.959"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/goal1" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="226dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="6dp"
+        android:contentDescription="@string/progress_border"
+        android:src="@drawable/layer_list"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.959"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/goal2" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="226dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="6dp"
+        android:contentDescription="@string/progress_border"
+        android:src="@drawable/layer_list"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.959"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/goal3" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="226dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="6dp"
+        android:contentDescription="@string/progress_border"
+        android:src="@drawable/layer_list"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.959"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/goal4" />
 
 
 </android.support.constraint.ConstraintLayout>
