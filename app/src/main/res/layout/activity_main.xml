@@ -1,31 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="20dp">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <Chronometer
-            android:id="@+id/chronometer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"/>
+        android:id="@+id/chronometer"
+        android:layout_width="268dp"
+        android:layout_height="94dp"
+        android:gravity="center"
+        android:textSize="60sp"
+        android:typeface="serif"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
-            android:id="@+id/startButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:text="@string/start"/>
+        android:id="@+id/startButton"
+        android:layout_width="100dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="8dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="@string/start"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/chronometer"
+        app:layout_constraintTop_toBottomOf="@+id/chronometer"
+        app:layout_constraintVertical_bias="0.0" />
+
     <Button
-            android:id="@+id/resetButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:text="@string/reset"/>
+        android:id="@+id/goal1"
+        android:layout_width="100dp"
+        android:layout_height="59dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="@string/goal1name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/progressBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/progressBar"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/goal2"
+        android:layout_width="100dp"
+        android:layout_height="59dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="@string/goal2name"
+        app:layout_constraintEnd_toStartOf="@+id/progressBar2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/progressBar2" />
+
+    <Button
+        android:id="@+id/goal3"
+        android:layout_width="100dp"
+        android:layout_height="59dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="@string/goal3name"
+        app:layout_constraintEnd_toStartOf="@+id/progressBar3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/progressBar3" />
+
+    <Button
+        android:id="@+id/goal4"
+        android:layout_width="100dp"
+        android:layout_height="59dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="@string/goal4name"
+        app:layout_constraintEnd_toStartOf="@+id/progressBar4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/progressBar4" />
+
+    <Button
+        android:id="@+id/addTimeButton"
+        android:layout_width="100dp"
+        android:layout_height="59dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="@string/setTime"
+        app:layout_constraintEnd_toEndOf="@+id/chronometer"
+        app:layout_constraintTop_toTopOf="@+id/startButton" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="223dp"
+        android:layout_height="56dp"
+        android:indeterminate="false"
+        android:progressBackgroundTint="@android:color/transparent"
+        android:scaleY=".8"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.914"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addTimeButton"
+        app:layout_constraintVertical_bias="0.042" />
+
+    <ImageView
+        android:layout_width="227dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="4dp"
+        android:src="@drawable/layer_list"
+        app:layout_constraintTop_toTopOf="@+id/goal1"
+        tools:layout_editor_absoluteX="172dp" />
+
+    <ProgressBar
+        android:id="@+id/progressBar2"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="223dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="16dp"
+        android:indeterminate="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.914"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressBar"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ProgressBar
+        android:id="@+id/progressBar3"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="223dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="16dp"
+        android:indeterminate="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.914"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressBar2"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ProgressBar
+        android:id="@+id/progressBar4"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="223dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="16dp"
+        android:indeterminate="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.914"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressBar3"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Chronometer
+        android:id="@+id/chronometer2"
+        android:layout_width="56dp"
+        android:layout_height="18dp"
+        android:gravity="end"
+        android:textAppearance="@android:style/TextAppearance.Material.Small"
+        app:layout_constraintBottom_toBottomOf="@+id/progressBar"
+        app:layout_constraintStart_toStartOf="@+id/progressBar"
+        app:layout_constraintTop_toTopOf="@+id/progressBar" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:fontFamily="sans-serif"
+        android:text="@string/goal1time"
+        app:layout_constraintStart_toEndOf="@+id/chronometer2"
+        app:layout_constraintTop_toTopOf="@+id/chronometer2" />
 
 
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>
