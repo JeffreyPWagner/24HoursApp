@@ -98,8 +98,6 @@
         android:layout_height="56dp"
         android:layout_marginTop="8dp"
         android:indeterminate="false"
-        android:max="@string/progress_1_max"
-        android:progress="@string/progress_1_value"
         android:progressBackgroundTint="@android:color/transparent"
         android:progressTint="@android:color/holo_blue_dark"
         android:scaleY=".8"
@@ -213,7 +211,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="3dp"
         android:fontFamily="sans-serif"
-        android:text="@string/goal_1_time"
         app:layout_constraintStart_toEndOf="@+id/chronometer1"
         app:layout_constraintTop_toTopOf="@+id/chronometer1" />
 
@@ -249,9 +246,9 @@
 
     <ImageView
         android:id="@+id/imageView1"
-        android:layout_width="226dp"
+        android:layout_width="225dp"
         android:layout_height="48dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="9dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="6dp"
         android:contentDescription="@string/progress_border"
@@ -263,9 +260,9 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="226dp"
+        android:layout_width="225dp"
         android:layout_height="48dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="9dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="6dp"
         android:contentDescription="@string/progress_border"
@@ -277,9 +274,9 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="226dp"
+        android:layout_width="225dp"
         android:layout_height="48dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="9dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="6dp"
         android:contentDescription="@string/progress_border"
@@ -291,9 +288,9 @@
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="226dp"
+        android:layout_width="225dp"
         android:layout_height="48dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="9dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="6dp"
         android:contentDescription="@string/progress_border"
@@ -302,6 +299,8 @@
         app:layout_constraintHorizontal_bias="0.959"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/goal4" />
+
+
 
 
 </android.support.constraint.ConstraintLayout>
