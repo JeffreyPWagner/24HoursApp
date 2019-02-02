@@ -3,28 +3,10 @@
 
     <string name="stop">Stop</string>
     <string name="start">Start</string>
-    <string name="setTime">Set Time</string>
-
-    <string name="goal_1_name">Goal 1</string>
-    <string name="goal_2_name">Goal 2</string>
-    <string name="goal_3_name">Goal 3</string>
-    <string name="goal_4_name">Goal 4</string>
-
-    <string name="goal_1_time">/ 6:00:00</string>
-    <string name="goal_2_time">/ 6:00:00</string>
-    <string name="goal_3_time">/ 6:00:00</string>
-    <string name="goal_4_time">/ 6:00:00</string>
+    <string name="adjustTime">Adjust Time</string>
+    <string name="ok">OK</string>
 
     <string name="progress_border">Progress border</string>
-
-    <string name="progress_1_max">100</string>
-    <string name="progress_1_value">80</string>
-    <string name="progress_2_max">100</string>
-    <string name="progress_2_value">20</string>
-    <string name="progress_3_max">100</string>
-    <string name="progress_3_value">50</string>
-    <string name="progress_4_max">100</string>
-    <string name="progress_4_value">100</string>
 
     <string name="invisible">set_time_picker_vis</string>
 
