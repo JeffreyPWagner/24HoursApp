@@ -1,17 +1,14 @@
 package me.jeffreywagner.a24hours
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.SystemClock
 import android.app.Activity
 import android.app.AlertDialog
 import android.app.TimePickerDialog
-import android.content.DialogInterface
 import android.content.pm.ActivityInfo
 import android.view.WindowManager
-import android.view.inputmethod.InputMethodManager
 import android.widget.*
-import kotlinx.android.synthetic.main.edit_text_dialog.*
-import kotlinx.android.synthetic.main.edit_text_dialog.view.*
 
 class MainActivity : Activity() {
 
@@ -69,30 +66,32 @@ class MainActivity : Activity() {
         startBut.setText(R.string.start)
     }
 
+    @SuppressLint("InflateParams")
     private fun showGoalDialog(b: Button) {
         val li = this.layoutInflater
-        val promptview = li.inflate(R.layout.edit_text_dialog, null)
+        val promptView = li.inflate(R.layout.edit_text_dialog, null)
         val dialogBuilder = AlertDialog.Builder(this)
 
 
-        dialogBuilder.setView(promptview)
+        dialogBuilder.setView(promptView)
 
-        val userInput = promptview.findViewById<EditText>(R.id.etUserInput) as EditText
+        val userInput = promptView.findViewById(R.id.etUserInput) as EditText
 
-        dialogBuilder.setPositiveButton("OK") { dialog, whichButton ->
+        dialogBuilder.setPositiveButton("OK") { _, _ ->
             b.text = userInput.text.toString()
 
 
         }
-        dialogBuilder.setNegativeButton("Cancel") { dialog, whichButton ->
+        dialogBuilder.setNegativeButton("Cancel") { _, _ ->
 
         }
         val dialog = dialogBuilder.create()
 
         dialog.show()
-        dialog.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
+        dialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -107,10 +106,11 @@ class MainActivity : Activity() {
         goal3But = findViewById(R.id.goal3)
         goal4But = findViewById(R.id.goal4)
 
-        goal1But.text = "Goal 1"
-        goal2But.text = "Goal 2"
-        goal3But.text = "Goal 3"
-        goal4But.text = "Goal 4"
+        goal1But.text = getString(R.string.goal1)
+        goal2But.text = getString(R.string.goal2)
+        goal3But.text = getString(R.string.goal3)
+        goal4But.text = getString(R.string.goal4)
+
 
         goal1Text = findViewById(R.id.textView1)
         goal2Text = findViewById(R.id.textView2)
@@ -166,7 +166,7 @@ class MainActivity : Activity() {
             }
         }
 
-        adjustTime = TimePickerDialog(this, R.style.HoloDialog,TimePickerDialog.OnTimeSetListener(function = { view, h, m ->
+        adjustTime = TimePickerDialog(this, R.style.HoloDialog,TimePickerDialog.OnTimeSetListener(function = { _, h, m ->
             baseTime = h.toLong()*3600000 + m.toLong()*60000
             chronoMain.base = SystemClock.elapsedRealtime() - baseTime
             chronoCur.base = SystemClock.elapsedRealtime() - baseTime
@@ -174,11 +174,17 @@ class MainActivity : Activity() {
             //TODO update progress bar
         }), 0, 0, true)
 
-        setGoalTime = TimePickerDialog(this, R.style.HoloDialog,TimePickerDialog.OnTimeSetListener(function = { view, h, m ->
+        setGoalTime = TimePickerDialog(this, R.style.HoloDialog,TimePickerDialog.OnTimeSetListener { _, h, m ->
             goal1Time = h *3600 + m * 60
             progress1.max = goal1Time
-            goal1Text.text = "/ ${if (h>=10){h} else{"0"+h}}:${if (m>=10){m} else{"0"+m}}:00"
-        }), 0, 0, true)
+            val hs = h.toString()
+            val ms = m.toString()
+            goal1Text.text = "/ ${if (h>=10){hs} else{
+                "0$h"
+            }}:${if (m>=10){ms} else{
+                "0$ms"
+            }}:00"
+        }, 0, 0, true)
 
         startBut.setOnClickListener {
             if (!isPlaying) {
