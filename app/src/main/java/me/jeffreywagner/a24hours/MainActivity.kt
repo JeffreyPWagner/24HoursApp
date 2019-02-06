@@ -36,6 +36,7 @@ class MainActivity : Activity() {
     private lateinit var goal2Text: TextView
     private lateinit var goal3Text: TextView
     private lateinit var goal4Text: TextView
+    private lateinit var goalCurText: TextView
 
     private lateinit var adjustTime: TimePickerDialog
     private lateinit var setGoalTime: TimePickerDialog
@@ -51,6 +52,8 @@ class MainActivity : Activity() {
     private var goal2Time = defaultTime
     private var goal3Time = defaultTime
     private var goal4Time = defaultTime
+    private var goalCurTime = 0
+    //TODO figure out how to reference current time
 
 
     private fun chronoSetUp(c: Chronometer) {
@@ -72,21 +75,16 @@ class MainActivity : Activity() {
         val promptView = li.inflate(R.layout.edit_text_dialog, null)
         val dialogBuilder = AlertDialog.Builder(this)
 
-
         dialogBuilder.setView(promptView)
 
         val userInput = promptView.findViewById(R.id.etUserInput) as EditText
 
         dialogBuilder.setPositiveButton("OK") { _, _ ->
             b.text = userInput.text.toString()
-
-
         }
         dialogBuilder.setNegativeButton("Cancel") { _, _ ->
-
         }
         val dialog = dialogBuilder.create()
-
         dialog.show()
         dialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
     }
@@ -133,9 +131,6 @@ class MainActivity : Activity() {
         chrono4 = findViewById(R.id.chronometer4)
         chronoSetUp(chrono4)
 
-        chronoCur = chrono2
-        //TODO build current chrono selection into code
-
         progress1 = findViewById(R.id.progressBar1)
         progress1.max = goal1Time
         progress1.progress = 0
@@ -153,7 +148,7 @@ class MainActivity : Activity() {
         progress4.progress = 0
 
         chronoMain.setOnChronometerTickListener {
-            if (ticks > 1) {progress1.progress += 1}
+            if (ticks > 1) {progressCur.progress += 1}
             ticks++
             val elapsedMil = SystemClock.elapsedRealtime() - chronoMain.base
             if (elapsedMil > 3600000L) {
@@ -168,18 +163,25 @@ class MainActivity : Activity() {
 
         adjustTime = TimePickerDialog(this, R.style.HoloDialog,TimePickerDialog.OnTimeSetListener(function = { _, h, m ->
             baseTime = h.toLong()*3600000 + m.toLong()*60000
+            if (baseTime > 3600000L) {
+                chronoMain.format = "0%s"
+                chronoCur.format = "0%s"
+            }
+            else {
+                chronoMain.format = "00:%s"
+                chronoCur.format = "00:%s"
+            }
             chronoMain.base = SystemClock.elapsedRealtime() - baseTime
             chronoCur.base = SystemClock.elapsedRealtime() - baseTime
-            //TODO adjust chrono format based on entered
-            //TODO update progress bar
+            progressCur.progress = (baseTime / 1000).toInt()
         }), 0, 0, true)
 
         setGoalTime = TimePickerDialog(this, R.style.HoloDialog,TimePickerDialog.OnTimeSetListener { _, h, m ->
             goal1Time = h *3600 + m * 60
-            progress1.max = goal1Time
+            progressCur.max = goal1Time
             val hs = h.toString()
             val ms = m.toString()
-            goal1Text.text = "/ ${if (h>=10){hs} else{
+            goalCurText.text = "/ ${if (h>=10){hs} else{
                 "0$h"
             }}:${if (m>=10){ms} else{
                 "0$ms"
@@ -210,16 +212,23 @@ class MainActivity : Activity() {
 
         goal1But.setOnClickListener {
             chronoCur = chrono1
-            //TODO reset chronos to current goal
+            progressCur = progress1
+            chronoMain.base = chronoCur.base
         }
         goal2But.setOnClickListener {
             chronoCur = chrono2
+            progressCur = progress2
+            chronoMain.base = chronoCur.base
         }
         goal3But.setOnClickListener {
             chronoCur = chrono3
+            progressCur = progress3
+            chronoMain.base = chronoCur.base
         }
         goal4But.setOnClickListener {
             chronoCur = chrono4
+            progressCur = progress4
+            chronoMain.base = chronoCur.base
         }
 
         goal1But.setOnLongClickListener {
@@ -236,6 +245,11 @@ class MainActivity : Activity() {
         }
         goal4But.setOnLongClickListener {
             showGoalDialog(goal4But)
+            return@setOnLongClickListener true
+        }
+
+        progress1.setOnLongClickListener {
+
             return@setOnLongClickListener true
         }
     }
