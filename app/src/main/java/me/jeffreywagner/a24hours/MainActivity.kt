@@ -13,58 +13,34 @@ import android.widget.*
 class MainActivity : Activity() {
 
     private lateinit var chronoMain: Chronometer
-    private lateinit var chrono1: Chronometer
-    private lateinit var chrono2: Chronometer
-    private lateinit var chrono3: Chronometer
-    private lateinit var chrono4: Chronometer
-    private lateinit var chronoCur: Chronometer
+
+    private lateinit var curGoal: Goal
+    var goal1 = Goal()
+    var goal2 = Goal()
+    var goal3 = Goal()
+    var goal4 = Goal()
 
     private lateinit var startBut: Button
     private lateinit var adjTimeBut: Button
-    private lateinit var goal1But: Button
-    private lateinit var goal2But: Button
-    private lateinit var goal3But: Button
-    private lateinit var goal4But: Button
-
-    private lateinit var progress1: ProgressBar
-    private lateinit var progress2: ProgressBar
-    private lateinit var progress3: ProgressBar
-    private lateinit var progress4: ProgressBar
-    private lateinit var progressCur: ProgressBar
-
-    private lateinit var goal1Text: TextView
-    private lateinit var goal2Text: TextView
-    private lateinit var goal3Text: TextView
-    private lateinit var goal4Text: TextView
-    private lateinit var goalCurText: TextView
 
     private lateinit var adjustTime: TimePickerDialog
     private lateinit var setGoalTime: TimePickerDialog
 
     private val defaultGoal = "/ 01:00:00"
-    private val defaultTime = 3600
 
     private var ticks = 0
     private var isPlaying = false
-    private var baseTime = 0L
-
-    private var goal1Time = defaultTime
-    private var goal2Time = defaultTime
-    private var goal3Time = defaultTime
-    private var goal4Time = defaultTime
-    private var goalCurTime = 0
-    //TODO figure out how to reference current time
-
 
     private fun chronoSetUp(c: Chronometer) {
         c.format = "00:%s"
-        c.base = SystemClock.elapsedRealtime() - 0
+        c.base = SystemClock.elapsedRealtime()
+        c.stop()
     }
 
     private fun stopTimer() {
-        baseTime = SystemClock.elapsedRealtime() - chronoMain.base
+        curGoal.baseTime = SystemClock.elapsedRealtime() - chronoMain.base
         chronoMain.stop()
-        chronoCur.stop()
+        curGoal.chrono.stop()
         isPlaying = false
         startBut.setText(R.string.start)
     }
@@ -99,89 +75,90 @@ class MainActivity : Activity() {
         startBut = findViewById(R.id.startButton)
         adjTimeBut = findViewById(R.id.adjustTimeButton)
 
-        goal1But = findViewById(R.id.goal1)
-        goal2But = findViewById(R.id.goal2)
-        goal3But = findViewById(R.id.goal3)
-        goal4But = findViewById(R.id.goal4)
+        goal1.but = findViewById(R.id.goal1)
+        goal2.but = findViewById(R.id.goal2)
+        goal3.but = findViewById(R.id.goal3)
+        goal4.but = findViewById(R.id.goal4)
 
-        goal1But.text = getString(R.string.goal1)
-        goal2But.text = getString(R.string.goal2)
-        goal3But.text = getString(R.string.goal3)
-        goal4But.text = getString(R.string.goal4)
+        goal1.but.text = getString(R.string.goal1)
+        goal2.but.text = getString(R.string.goal2)
+        goal3.but.text = getString(R.string.goal3)
+        goal4.but.text = getString(R.string.goal4)
 
+        goal1.goalText = findViewById(R.id.textView1)
+        goal2.goalText = findViewById(R.id.textView2)
+        goal3.goalText = findViewById(R.id.textView3)
+        goal4.goalText = findViewById(R.id.textView4)
 
-        goal1Text = findViewById(R.id.textView1)
-        goal2Text = findViewById(R.id.textView2)
-        goal3Text = findViewById(R.id.textView3)
-        goal4Text = findViewById(R.id.textView4)
-
-        goal1Text.text = defaultGoal
-        goal2Text.text = defaultGoal
-        goal3Text.text = defaultGoal
-        goal4Text.text = defaultGoal
+        goal1.goalText.text = defaultGoal
+        goal2.goalText.text = defaultGoal
+        goal3.goalText.text = defaultGoal
+        goal4.goalText.text = defaultGoal
 
         chronoMain = findViewById(R.id.chronometer_main)
         chronoSetUp(chronoMain)
-        chrono1 = findViewById(R.id.chronometer1)
-        chronoSetUp(chrono1)
-        chrono2 = findViewById(R.id.chronometer2)
-        chronoSetUp(chrono2)
-        chrono3 = findViewById(R.id.chronometer3)
-        chronoSetUp(chrono3)
-        chrono4 = findViewById(R.id.chronometer4)
-        chronoSetUp(chrono4)
+        goal1.chrono = findViewById(R.id.chronometer1)
+        chronoSetUp(goal1.chrono)
+        goal2.chrono = findViewById(R.id.chronometer2)
+        chronoSetUp(goal2.chrono)
+        goal3.chrono = findViewById(R.id.chronometer3)
+        chronoSetUp(goal3.chrono)
+        goal4.chrono = findViewById(R.id.chronometer4)
+        chronoSetUp(goal4.chrono)
 
-        progress1 = findViewById(R.id.progressBar1)
-        progress1.max = goal1Time
-        progress1.progress = 0
+        goal1.progbar = findViewById(R.id.progressBar1)
+        goal1.progbar.max = goal1.goalTime
+        goal1.progbar.progress = 0
 
-        progress2 = findViewById(R.id.progressBar1)
-        progress2.max = goal2Time
-        progress2.progress = 0
+        goal2.progbar = findViewById(R.id.progressBar2)
+        goal2.progbar.max = goal2.goalTime
+        goal2.progbar.progress = 0
 
-        progress3 = findViewById(R.id.progressBar1)
-        progress3.max = goal3Time
-        progress3.progress = 0
+        goal3.progbar = findViewById(R.id.progressBar3)
+        goal3.progbar.max = goal3.goalTime
+        goal3.progbar.progress = 0
 
-        progress4 = findViewById(R.id.progressBar1)
-        progress4.max = goal4Time
-        progress4.progress = 0
+        goal4.progbar = findViewById(R.id.progressBar4)
+        goal4.progbar.max = goal4.goalTime
+        goal4.progbar.progress = 0
+
+        curGoal = goal1
 
         chronoMain.setOnChronometerTickListener {
-            if (ticks > 1) {progressCur.progress += 1}
+            if (ticks > 1) {curGoal.progbar.progress += 1}
             ticks++
             val elapsedMil = SystemClock.elapsedRealtime() - chronoMain.base
             if (elapsedMil > 3600000L) {
                 chronoMain.format = "0%s"
-                chronoCur.format = "0%s"
+                curGoal.chrono.format = "0%s"
             }
             else {
                 chronoMain.format = "00:%s"
-                chronoCur.format = "00:%s"
+                curGoal.chrono.format = "00:%s"
             }
         }
 
         adjustTime = TimePickerDialog(this, R.style.HoloDialog,TimePickerDialog.OnTimeSetListener(function = { _, h, m ->
-            baseTime = h.toLong()*3600000 + m.toLong()*60000
-            if (baseTime > 3600000L) {
+            curGoal.baseTime = h.toLong()*3600000 + m.toLong()*60000
+            if (curGoal.baseTime > 3600000L) {
                 chronoMain.format = "0%s"
-                chronoCur.format = "0%s"
+                curGoal.chrono.format = "0%s"
             }
             else {
                 chronoMain.format = "00:%s"
-                chronoCur.format = "00:%s"
+                curGoal.chrono.format = "00:%s"
             }
-            chronoMain.base = SystemClock.elapsedRealtime() - baseTime
-            chronoCur.base = SystemClock.elapsedRealtime() - baseTime
-            progressCur.progress = (baseTime / 1000).toInt()
+            chronoMain.base = SystemClock.elapsedRealtime() - curGoal.baseTime
+            curGoal.chrono.base = SystemClock.elapsedRealtime() - curGoal.baseTime
+            curGoal.progbar.progress = (curGoal.baseTime / 1000).toInt()
         }), 0, 0, true)
 
         setGoalTime = TimePickerDialog(this, R.style.HoloDialog,TimePickerDialog.OnTimeSetListener { _, h, m ->
-            goal1Time = h *3600 + m * 60
-            progressCur.max = goal1Time
+            curGoal.goalTime = h *3600 + m * 60
+            curGoal.progbar.max = curGoal.goalTime
             val hs = h.toString()
             val ms = m.toString()
-            goalCurText.text = "/ ${if (h>=10){hs} else{
+            curGoal.goalText.text = "/ ${if (h>=10){hs} else{
                 "0$h"
             }}:${if (m>=10){ms} else{
                 "0$ms"
@@ -191,10 +168,10 @@ class MainActivity : Activity() {
         startBut.setOnClickListener {
             if (!isPlaying) {
                 ticks = 0
-                chronoMain.base = SystemClock.elapsedRealtime() - baseTime
-                chronoCur.base = SystemClock.elapsedRealtime() - baseTime
+                chronoMain.base = SystemClock.elapsedRealtime() - curGoal.baseTime
+                curGoal.chrono.base = SystemClock.elapsedRealtime() - curGoal.baseTime
                 chronoMain.start()
-                chronoCur.start()
+                curGoal.chrono.start()
                 isPlaying = true
             }
             else {
@@ -210,45 +187,53 @@ class MainActivity : Activity() {
             adjustTime.show()
         }
 
-        goal1But.setOnClickListener {
-            chronoCur = chrono1
-            progressCur = progress1
-            chronoMain.base = chronoCur.base
+        goal1.but.setOnClickListener {
+            if (isPlaying){
+                stopTimer()
+            }
+            curGoal = goal1
+            chronoMain.base = SystemClock.elapsedRealtime() - curGoal.baseTime
         }
-        goal2But.setOnClickListener {
-            chronoCur = chrono2
-            progressCur = progress2
-            chronoMain.base = chronoCur.base
+        goal2.but.setOnClickListener {
+            if (isPlaying){
+                stopTimer()
+            }
+            curGoal = goal2
+            chronoMain.base = SystemClock.elapsedRealtime() - curGoal.baseTime
         }
-        goal3But.setOnClickListener {
-            chronoCur = chrono3
-            progressCur = progress3
-            chronoMain.base = chronoCur.base
+        goal3.but.setOnClickListener {
+            if (isPlaying){
+                stopTimer()
+            }
+            curGoal = goal3
+            chronoMain.base = SystemClock.elapsedRealtime() - curGoal.baseTime
         }
-        goal4But.setOnClickListener {
-            chronoCur = chrono4
-            progressCur = progress4
-            chronoMain.base = chronoCur.base
-        }
-
-        goal1But.setOnLongClickListener {
-            showGoalDialog(goal1But)
-            return@setOnLongClickListener true
-        }
-        goal2But.setOnLongClickListener {
-            showGoalDialog(goal2But)
-            return@setOnLongClickListener true
-        }
-        goal3But.setOnLongClickListener {
-            showGoalDialog(goal3But)
-            return@setOnLongClickListener true
-        }
-        goal4But.setOnLongClickListener {
-            showGoalDialog(goal4But)
-            return@setOnLongClickListener true
+        goal4.but.setOnClickListener {
+            if (isPlaying){
+                stopTimer()
+            }
+            curGoal = goal4
+            chronoMain.base = SystemClock.elapsedRealtime() - curGoal.baseTime
         }
 
-        progress1.setOnLongClickListener {
+        goal1.but.setOnLongClickListener {
+            showGoalDialog(goal1.but)
+            return@setOnLongClickListener true
+        }
+        goal2.but.setOnLongClickListener {
+            showGoalDialog(goal2.but)
+            return@setOnLongClickListener true
+        }
+        goal3.but.setOnLongClickListener {
+            showGoalDialog(goal3.but)
+            return@setOnLongClickListener true
+        }
+        goal4.but.setOnLongClickListener {
+            showGoalDialog(goal4.but)
+            return@setOnLongClickListener true
+        }
+
+        goal1.progbar.setOnLongClickListener {
 
             return@setOnLongClickListener true
         }
