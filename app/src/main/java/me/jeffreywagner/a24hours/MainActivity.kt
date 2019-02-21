@@ -128,10 +128,11 @@ class MainActivity : Activity() {
             if (ticks > 1) {curGoal.progbar.progress += 1}
             ticks++
             val elapsedMil = SystemClock.elapsedRealtime() - chronoMain.base
-            if (elapsedMil > 3600000L) {
+            if (elapsedMil >= 3600000L) {
                 chronoMain.format = "0%s"
                 curGoal.chrono.format = "0%s"
             }
+            // TODO update formatting for 10 hours +
             else {
                 chronoMain.format = "00:%s"
                 curGoal.chrono.format = "00:%s"
@@ -140,7 +141,11 @@ class MainActivity : Activity() {
 
         adjustTime = TimePickerDialog(this, R.style.HoloDialog,TimePickerDialog.OnTimeSetListener(function = { _, h, m ->
             curGoal.baseTime = h.toLong()*3600000 + m.toLong()*60000
-            if (curGoal.baseTime > 3600000L) {
+            if (curGoal.baseTime >= 36000000L) {
+                chronoMain.format = "%s"
+                curGoal.chrono.format = "%s"
+            }
+            else if (curGoal.baseTime >= 3600000L) {
                 chronoMain.format = "0%s"
                 curGoal.chrono.format = "0%s"
             }
@@ -153,18 +158,24 @@ class MainActivity : Activity() {
             curGoal.progbar.progress = (curGoal.baseTime / 1000).toInt()
         }), 0, 0, true)
 
-        setGoalTime = TimePickerDialog(this, R.style.HoloDialog,TimePickerDialog.OnTimeSetListener { _, h, m ->
-            curGoal.goalTime = h *3600 + m * 60
-            curGoal.progbar.max = curGoal.goalTime
-            val hs = h.toString()
-            val ms = m.toString()
-            curGoal.goalText.text = "/ ${if (h>=10){hs} else{
-                "0$h"
-            }}:${if (m>=10){ms} else{
-                "0$ms"
-            }}:00"
-        }, 0, 0, true)
-
+        fun updateGoalTime (g: Goal) {
+            setGoalTime = TimePickerDialog(this, R.style.HoloDialog, TimePickerDialog.OnTimeSetListener { _, h, m ->
+                g.goalTime = h * 3600 + m * 60
+                g.progbar.max = g.goalTime
+                val hs = h.toString()
+                val ms = m.toString()
+                g.goalText.text = "/ ${if (h >= 10) {
+                    hs
+                } else {
+                    "0$h"
+                }}:${if (m >= 10) {
+                    ms
+                } else {
+                    "0$ms"
+                }}:00"
+            }, 0, 0, true)
+            setGoalTime.show()
+        }
         startBut.setOnClickListener {
             if (!isPlaying) {
                 ticks = 0
@@ -234,9 +245,30 @@ class MainActivity : Activity() {
         }
 
         goal1.progbar.setOnLongClickListener {
-
+            updateGoalTime(goal1)
             return@setOnLongClickListener true
         }
+
+        goal2.progbar.setOnLongClickListener {
+            updateGoalTime(goal2)
+            return@setOnLongClickListener true
+        }
+
+        goal3.progbar.setOnLongClickListener {
+            updateGoalTime(goal3)
+            return@setOnLongClickListener true
+        }
+
+        goal4.progbar.setOnLongClickListener {
+            updateGoalTime(goal4)
+            return@setOnLongClickListener true
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        curGoal.progbar.progress = ((SystemClock.elapsedRealtime() - curGoal.chrono.base) / 1000).toInt()
+
     }
 }
 
