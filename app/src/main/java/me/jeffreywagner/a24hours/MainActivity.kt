@@ -128,11 +128,14 @@ class MainActivity : Activity() {
             if (ticks > 1) {curGoal.progbar.progress += 1}
             ticks++
             val elapsedMil = SystemClock.elapsedRealtime() - chronoMain.base
-            if (elapsedMil >= 3600000L) {
+            if (elapsedMil >= 36000000L) {
+                chronoMain.format = "%s"
+                curGoal.chrono.format = "%s"
+            }
+            else if (elapsedMil >= 3600000L) {
                 chronoMain.format = "0%s"
                 curGoal.chrono.format = "0%s"
             }
-            // TODO update formatting for 10 hours +
             else {
                 chronoMain.format = "00:%s"
                 curGoal.chrono.format = "00:%s"
