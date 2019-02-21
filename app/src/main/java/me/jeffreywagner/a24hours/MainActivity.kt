@@ -201,6 +201,24 @@ class MainActivity : Activity() {
             adjustTime.show()
         }
 
+        adjTimeBut.setOnLongClickListener {
+            chronoMain.base = SystemClock.elapsedRealtime()
+            curGoal.chrono.base = SystemClock.elapsedRealtime()
+            goal1.chrono.base = SystemClock.elapsedRealtime()
+            goal2.chrono.base = SystemClock.elapsedRealtime()
+            goal3.chrono.base = SystemClock.elapsedRealtime()
+            goal4.chrono.base = SystemClock.elapsedRealtime()
+            goal1.baseTime = 0L
+            goal2.baseTime = 0L
+            goal3.baseTime = 0L
+            goal4.baseTime = 0L
+            goal1.progbar.progress = 0
+            goal2.progbar.progress = 0
+            goal3.progbar.progress = 0
+            goal4.progbar.progress = 0
+            return@setOnLongClickListener true
+        }
+
         goal1.but.setOnClickListener {
             if (isPlaying){
                 stopTimer()
