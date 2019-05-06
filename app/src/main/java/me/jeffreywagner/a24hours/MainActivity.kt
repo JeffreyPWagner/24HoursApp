@@ -288,7 +288,9 @@ class MainActivity : Activity() {
 
     override fun onResume() {
         super.onResume()
-        curGoal.progbar.progress = ((SystemClock.elapsedRealtime() - curGoal.chrono.base) / 1000).toInt()
+        if (isPlaying) {
+            curGoal.progbar.progress = ((SystemClock.elapsedRealtime() - curGoal.chrono.base) / 1000).toInt()
+        }
 
     }
 }

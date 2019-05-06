@@ -1,0 +1,44 @@
+{
+  "project_info": {
+    "project_number": "680862512269",
+    "firebase_url": "https://hoursapp-2345e.firebaseio.com",
+    "project_id": "hoursapp-2345e",
+    "storage_bucket": "hoursapp-2345e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:680862512269:android:24b27371c8a3563d",
+        "android_client_info": {
+          "package_name": "me.jeffreywagner.a24hours"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "680862512269-021l0huak2012u6jf6nrjdhic094dq7g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "me.jeffreywagner.a24hours",
+            "certificate_hash": "06632f7477eb36a452aabd2c1560d81e4fd88c53"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBomS6YcGMNryDmhfor8IfVHb9AgzUPRXQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "680862512269-d4nmfsrloo9s241k9vjb3vc2fao48htp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
